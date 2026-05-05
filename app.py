@@ -11,29 +11,81 @@ from xgboost import XGBClassifier
 st.set_page_config(page_title="NIDS Dashboard", layout="wide")
 
 st.markdown("""
-    <style>
-    .main-title {
-        text-align: center;
-        font-size: 50px;
-        font-weight: 700;
-        background: linear-gradient(90deg, #8e2de2, #ff6ec4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 5px;
-        letter-spacing: 1px;
-    }
+<style>
 
-    .subtitle {
-        text-align: center;
-        font-size: 25px;
-        color: #6c757d;
-        margin-bottom: 30px;
-    }
 
-    .block-container {
-        padding-top: 2rem;
-    }
-    </style>
+.stApp {
+    background: linear-gradient(135deg, #0f0c29, #1a0033, #000000);
+    color: #ffffff;
+}
+
+
+.main-title {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #a855f7, #ff00cc, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+    text-align: center;
+    font-size: 22px;
+    color: #c084fc;
+    margin-bottom: 30px;
+}
+
+
+.css-1d391kg, .stMetric, .stDataFrame, .stTable {
+    background-color: rgba(20, 10, 40, 0.8) !important;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+
+.stButton>button {
+    background: linear-gradient(90deg, #7c3aed, #ec4899);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+}
+
+.stButton>button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+}
+
+.stFileUploader {
+    background-color: rgba(30, 0, 60, 0.6);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+[data-testid="stMetric"] {
+    background: rgba(40, 0, 80, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #a855f7;
+    border-radius: 10px;
+}
+
+</style>
 """, unsafe_allow_html=True)
 
 st.markdown('<div class="main-title">Network Intrusion Detection System</div>', unsafe_allow_html=True)
