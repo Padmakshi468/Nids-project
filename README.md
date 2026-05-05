@@ -63,24 +63,106 @@ pip install streamlit pandas numpy scikit-learn xgboost matplotlib joblib
 Running the Application:
 streamlit run app.py
 
-Project Structure:
+## Project Structure
+
 Nids-project/
-app.py → Streamlit application
-model.pkl → Trained ML model
-KDDTrain+.txt → Dataset file
-README.md → Documentation
+│
+├── app.py              Streamlit web application for intrusion detection dashboard
+├── nids.py             Model training and evaluation script (ML pipeline)
+├── KDDTrain+.txt       NSL-KDD dataset used for training the model
+├── model.pkl           Saved trained XGBoost model
+├── README.md           Project documentation and usage guide
 
-Results:
-The system successfully classifies network traffic into normal and attack categories.
-XGBoost provides higher accuracy compared to Decision Tree.
-The dashboard provides real-time visualization of detection results.
 
-Future Improvements:
-Integration with real-time packet capture systems
-Deep learning-based intrusion detection models
-API-based deployment for external integration
-Automated alert generation system
-Cloud deployment for scalability
+---
+
+## How It Works
+
+1. Input Dataset (KDDTrain+.txt)
+-> Data Preprocessing (Encoding + Cleaning)
+-> Feature Selection
+-> Model Training (Decision Tree + XGBoost)
+-> Best Model Saved (model.pkl)
+-> Streamlit Web Application (app.py)
+-> Prediction Output (Normal / Attack)
+-> Visualization Dashboard
+
+
+---
+
+## System Architecture
+
+1. User uploads dataset
+-> Streamlit interface (app.py) processes input
+-> Pretrained model (model.pkl) is loaded
+-> XGBoost prediction engine is executed
+-> Results are classified as Normal or Attack
+-> Visualization layer displays insights
+
+
+---
+
+## Results Preview
+
+(Add screenshots of your Streamlit application here)
+
+Recommended sections for screenshots:
+- Raw Data Preview
+- Detection Summary Dashboard
+- Traffic Distribution Pie Chart
+- Suspicious Records Table
+
+
+---
+
+## Workflow Explanation
+
+1. User uploads a network traffic dataset
+-> Data is cleaned and preprocessed
+-> Categorical values are encoded
+-> Model processes feature set
+-> Each record is classified as:
+   -> Normal
+   -> Attack
+-> Confidence scores are generated
+-> Visual analytics are displayed in the dashboard
+
+
+---
+
+## Key Highlights
+
+- Real-time intrusion detection system
+- Machine learning-based binary classification
+- Interactive Streamlit dashboard
+- Lightweight and deployable model
+- Built using NSL-KDD dataset
+
+
+---
+
+## Deployment Options
+
+The application can be deployed using:
+
+- Streamlit Cloud
+- Render
+- Hugging Face Spaces
+
+Run locally using:
+
+streamlit run app.py
+
+
+---
+
+## Future Improvements
+
+1. Real-time network packet capture integration
+2. Deep learning-based intrusion detection models
+3. REST API-based deployment for external systems
+4. Cloud deployment for scalability
+5. Automated alert generation system
 
 License:
 This project is intended for academic and educational purposes.
