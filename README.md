@@ -1,168 +1,127 @@
-Network Intrusion Detection System (NIDS)
-Overview
+# 🛡️ Network Intrusion Detection System (NIDS)
 
-This project implements a machine learning-based Network Intrusion Detection System using the NSL-KDD dataset. The system classifies network traffic as normal or malicious using trained models and provides an interactive web interface for analysis and visualization.
+A Machine Learning-based Intrusion Detection System that classifies network traffic as **Normal or Attack** using the NSL-KDD dataset.  
+Built with Python, XGBoost, and Streamlit for real-time detection and visualization.
 
-The primary goal is to detect anomalous network behavior efficiently and demonstrate a practical application of machine learning in cybersecurity.
+---
 
-Features:
-Classification of network traffic into normal and attack categories
-Real-time prediction through a web-based interface
-Confidence score for each prediction
-Visualization of traffic distribution
-Filtering of suspicious network records
-Supports CSV and TXT network datasets
-Machine Learning Approach
+## 🎯 Objective
 
-Dataset: NSL-KDD
+Detect anomalous network behavior using supervised machine learning and demonstrate a real-world cybersecurity use case.
 
-Problem Type: Binary classification
+---
 
-Label Mapping:
+## ⚙️ Features
 
-Normal → 0
-Attack → 1
+- 🔍 Classifies network traffic (Normal / Attack)
+- ⚡ Real-time prediction using Streamlit
+- 📊 Confidence score for predictions
+- 📈 Interactive dashboard visualizations
+- 📁 Supports CSV and TXT datasets
+- 🧠 ML-based detection using XGBoost
 
-Models Used:
+---
 
-Decision Tree Classifier (baseline)
-XGBoost Classifier (final model)
+## 🧠 Machine Learning Approach
 
-Preprocessing:
+- Dataset: NSL-KDD
+- Problem Type: Binary Classification
+  - Normal → 0
+  - Attack → 1
 
-Label encoding for categorical features
-Handling missing and invalid values
-Feature scaling not required (tree-based models)
-System Workflow
-Input network traffic dataset
-Data preprocessing and feature encoding
-Model inference using trained XGBoost classifier
-Prediction generation (Normal / Attack)
-Visualization of results in dashboard
+### Models Used
+- Decision Tree (baseline)
+- XGBoost (final optimized model)
 
-Tech Stack:
-Python,
-Streamlit,
-Pandas, NumPy
-Scikit-learn,
-XGBoost,
-Matplotlib,
-Joblib
+---
 
-Installation:
-Clone the repository:
-git clone https://github.com/Padmakshi468/Nids-project.git
-cd Nids-project
+## 🧹 Data Preprocessing
 
-Install dependencies:
-pip install -r requirements.txt
+- Label encoding for categorical features
+- Handling missing/invalid values
+- Feature selection based on importance
+- No feature scaling required (tree-based models)
 
-If requirements file is not available:
-pip install streamlit pandas numpy scikit-learn xgboost matplotlib joblib
+---
 
-Running the Application:
-streamlit run app.py
+## 🔄 System Workflow
 
-## Project Structure
+```
+Dataset → Preprocessing → Feature Engineering → Model Training → model.pkl → Streamlit App → Prediction → Visualization
+```
 
+---
+
+## 🏗️ Project Structure
+
+```
 Nids-project/
 │
-├── app.py              Streamlit web application for intrusion detection dashboard
-├── nids.py             Model training and evaluation script (ML pipeline)
-├── KDDTrain+.txt       NSL-KDD dataset used for training the model
-├── model.pkl           Saved trained XGBoost model
-├── README.md           Project documentation and usage guide
-
-
----
-
-## How It Works
-
-1. Input Dataset (KDDTrain+.txt)
--> Data Preprocessing (Encoding + Cleaning)
--> Feature Selection
--> Model Training (Decision Tree + XGBoost)
--> Best Model Saved (model.pkl)
--> Streamlit Web Application (app.py)
--> Prediction Output (Normal / Attack)
--> Visualization Dashboard
-
+├── app.py              # Streamlit web application
+├── nids.py             # ML training pipeline
+├── KDDTrain+.txt       # NSL-KDD dataset
+├── model.pkl           # Trained XGBoost model
+├── README.md           # Documentation
+```
 
 ---
 
-## System Architecture
+## 🚀 How to Run
 
-1. User uploads dataset
--> Streamlit interface (app.py) processes input
--> Pretrained model (model.pkl) is loaded
--> XGBoost prediction engine is executed
--> Results are classified as Normal or Attack
--> Visualization layer displays insights
+### 1. Clone Repository
+```bash
+git clone https://github.com/Padmakshi468/Nids-project.git
+cd Nids-project
+```
 
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
----
+OR
+```bash
+pip install streamlit pandas numpy scikit-learn xgboost matplotlib joblib
+```
 
-## Results Preview
-
-(Add screenshots of your Streamlit application here)
-
-Recommended sections for screenshots:
-- Raw Data Preview
-- Detection Summary Dashboard
-- Traffic Distribution Pie Chart
-- Suspicious Records Table
-
-
----
-
-## Workflow Explanation
-
-1. User uploads a network traffic dataset
--> Data is cleaned and preprocessed
--> Categorical values are encoded
--> Model processes feature set
--> Each record is classified as:
-   -> Normal
-   -> Attack
--> Confidence scores are generated
--> Visual analytics are displayed in the dashboard
-
-
----
-
-## Key Highlights
-
-- Real-time intrusion detection system
-- Machine learning-based binary classification
-- Interactive Streamlit dashboard
-- Lightweight and deployable model
-- Built using NSL-KDD dataset
-
-
----
-
-## Deployment Options
-
-The application can be deployed using:
-
-- Streamlit Cloud
-- Render
-- Hugging Face Spaces
-
-Run locally using:
-
+### 3. Run Application
+```bash
 streamlit run app.py
-
+```
 
 ---
 
-## Future Improvements
+## 📊 Output Visualizations
 
-1. Real-time network packet capture integration
-2. Deep learning-based intrusion detection models
-3. REST API-based deployment for external systems
-4. Cloud deployment for scalability
-5. Automated alert generation system
+### 📌 Dashboard View:
+![Dashboard](images/Dashboard.png)
 
-License:
+### 📌 Detection Result:
+![Detection](images/Detection.png)
+
+### 📌 Plots:
+![Plots](images/Plots.png)
+
+### 📌 Suspicious Records:
+![Suspicious Records](images/Suspicious_Records.png)
+
+---
+
+---
+
+## 🚀 Future Improvements
+
+- Real-time packet capture integration
+- Deep learning models (LSTM / CNN)
+- REST API deployment
+- Cloud deployment (AWS / Azure)
+- Automated alert system
+
+---
+
+## 📜 License
+
 This project is intended for academic and educational purposes.
+
+---
+
