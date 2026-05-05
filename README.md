@@ -1,3 +1,8 @@
+## 🚀 Live Demo
+
+🌐 **Deployed Application:**  
+👉 [Click here to run NIDS Project](https://nids-project.streamlit.app/)
+---
 # 🛡️ Network Intrusion Detection System (NIDS)
 
 A Machine Learning-based Intrusion Detection System that classifies network traffic as **Normal or Attack** using the NSL-KDD dataset.  
