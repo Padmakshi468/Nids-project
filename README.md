@@ -65,11 +65,10 @@ streamlit run app.py
 
 Project Structure:
 Nids-project/
-│
-├── app.py                 # Streamlit application
-├── model.pkl              # Trained ML model
-├── KDDTrain+.txt          # Dataset
-├── README.md              # Documentation
+app.py → Streamlit application
+model.pkl → Trained ML model
+KDDTrain+.txt → Dataset file
+README.md → Documentation
 
 Results:
 The system successfully classifies network traffic into normal and attack categories.
