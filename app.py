@@ -169,11 +169,12 @@ else:
 
 st.subheader("Dataset Selection")
 
-col1, col2 = st.columns(2)
+st.markdown("Choose a dataset source:")
 
-use_demo = col1.button("Use NSL-KDD Demo")
-uploaded_file = col2.file_uploader(
-    "Upload CSV/TXT Dataset",
+use_demo = st.button("NSL-KDD Demo Dataset")
+
+uploaded_file = st.file_uploader(
+    "Or Upload Your Own CSV/TXT Dataset",
     type=["csv", "txt"]
 )
 
