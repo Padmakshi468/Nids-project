@@ -85,6 +85,33 @@ st.markdown("""
     border-radius: 10px;
 }
 
+
+/* 🔥 Fix file uploader text visibility */
+section[data-testid="stFileUploader"] {
+    color: white !important;
+}
+
+/* Labels */
+label, .stFileUploader label {
+    color: #e0e0ff !important;
+    font-weight: 500;
+}
+
+/* "No file chosen" text */
+[data-testid="stFileUploader"] div {
+    color: #d1d5db !important;
+}
+
+/* Small helper text (200MB, CSV, TXT) */
+[data-testid="stFileUploader"] small {
+    color: #9ca3af !important;
+}
+
+/* General text fallback */
+body, p, span, div {
+    color: #ffffff;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -140,14 +167,31 @@ else:
     model, encoders = train_and_save_model()
     st.success("Model ready")
 
-uploaded_file = st.file_uploader("📂Select CSV/TXT file", type=["csv", "txt"])
+st.subheader("Dataset Selection")
+
+col1, col2 = st.columns(2)
+
+use_demo = col1.button("Use NSL-KDD Demo")
+uploaded_file = col2.file_uploader(
+    "Upload CSV/TXT Dataset",
+    type=["csv", "txt"]
+)
 
 status_slot = st.empty()
 button_slot = st.empty()
 
-if uploaded_file:
-    try:
+df = None
+
+try:
+
+    if use_demo:
+        df = pd.read_csv("demo_dataset.csv", header=None)
+        st.success("NSL-KDD demo dataset loaded")
+
+    elif uploaded_file:
         df = pd.read_csv(uploaded_file, header=None)
+
+    if df is not None:
 
         if df.shape[1] < 41:
             st.error("Invalid input format. Expected at least 41 columns.")
@@ -225,7 +269,7 @@ if uploaded_file:
             csv = df.to_csv(index=False).encode('utf-8')
             st.download_button("Download Results", csv, "nids_output.csv", "text/csv")
 
-    except Exception as e:
-        st.error("Processing error")
-        st.text(str(e))
-        st.text(traceback.format_exc())
+except Exception as e:
+    st.error("Processing error")
+    st.text(str(e))
+    st.text(traceback.format_exc())
