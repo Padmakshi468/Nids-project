@@ -15,6 +15,8 @@ from xgboost import XGBClassifier
 
 import os
 import streamlit as st
+if "df_raw" not in st.session_state:
+    st.session_state.df_raw = None
 
 try:
     from groq import Groq
@@ -243,31 +245,33 @@ st.subheader("Dataset Selection")
 use_demo = st.button("📂 NSL-KDD Demo Dataset")
 uploaded_file = st.file_uploader("Upload CSV/TXT Dataset", type=["csv", "txt"])
 
-df_raw = None
 
-# Demo dataset takes priority over upload
+
+# =========================
+# DATASET STATE HANDLING
+# =========================
+
 if use_demo:
     demo_path = "demo_dataset.csv"
-    if not os.path.exists(demo_path):
-        st.error(
-            f"`{demo_path}` not found. Place it in the same directory as app.py."
-        )
-    else:
-        df_raw = pd.read_csv(demo_path, header=None)
+    if os.path.exists(demo_path):
+        st.session_state.df_raw = pd.read_csv(demo_path, header=None)
         st.success("✅ Demo dataset loaded.")
+    else:
+        st.error("demo_dataset.csv not found")
 
 elif uploaded_file is not None:
     try:
-        df_raw = pd.read_csv(uploaded_file, header=None)
-        st.success(f"✅ Uploaded file loaded: `{uploaded_file.name}`")
+        st.session_state.df_raw = pd.read_csv(uploaded_file, header=None)
+        st.success(f"✅ Uploaded file loaded: {uploaded_file.name}")
     except Exception as e:
-        st.error(f"Could not read uploaded file: {e}")
+        st.error(f"Could not read file: {e}")
+
 
 # =========================
 # VALIDATE & PREVIEW
 # =========================
-if df_raw is not None:
-    n_cols = df_raw.shape[1]
+if st.session_state.df_raw is not None:
+    n_cols = st.session_state.df_raw.shape[1]
 
     if n_cols < 41:
         st.error(
@@ -275,7 +279,7 @@ if df_raw is not None:
         )
         st.stop()
 
-    df_input = df_raw.iloc[:, :41].copy()
+    df_input = st.session_state.df_raw.iloc[:, :41].copy()
     df_input.columns = col_names
 
     st.markdown("**Preview (first 5 rows):**")
@@ -301,6 +305,9 @@ if df_raw is not None:
                 df_numeric = df_input.apply(pd.to_numeric, errors="coerce").fillna(0)
 
                 # ── Predict ─────────────────────────────────────────────
+                if st.session_state.df_raw is None:
+                    st.warning("Please select a dataset first.")
+                    st.stop()
                 predictions = model.predict(df_numeric)
 
                 if hasattr(model, "predict_proba"):
